@@ -3,7 +3,19 @@
 **一份 `config.json` → 一支带旁白、背景乐、音效、电影感动效的产品/演示视频(MP4)。**
 A config-driven engine that turns one JSON file into a narrated, cinematic product / pitch demo video — powered by [Remotion](https://remotion.dev).
 
-既是 [Claude Code](https://claude.com/claude-code) 的一个 **skill**(说"帮我做个产品演示视频"即触发),也能作为独立的 Remotion 工程直接用。
+既是 [Claude Code](https://claude.com/claude-code) 的一个 **skill**(说"帮我做个产品演示视频"即触发),也能作为独立的 Remotion 工程直接用。支持 Claude Code / OpenClaw / Hermes 等主流 Agent-Skills 框架。
+
+## 一键安装
+
+```sh
+# macOS / Linux — 默认装到 Claude Code(~/.claude/skills/)
+curl -fsSL https://raw.githubusercontent.com/stoneyang0213/demo-video-maker/main/install.sh | sh
+```
+```powershell
+# Windows PowerShell
+irm https://raw.githubusercontent.com/stoneyang0213/demo-video-maker/main/install.ps1 | iex
+```
+其它框架(OpenClaw / Hermes / …)只是 skills 目录不同,加 `--dir <skills目录>` 即可。**完整分框架说明见 [INSTALL.md](INSTALL.md)**。先决条件:Node 18+ / ffmpeg / Python3(requests+numpy)/ SiliconFlow key,安装脚本会自检。
 
 ---
 
