@@ -1,21 +1,27 @@
 # demo-video-maker
 
+[![skills.sh](https://skills.sh/b/stoneyang0213/demo-video-maker)](https://skills.sh/stoneyang0213/demo-video-maker)
+
 **一份 `config.json` → 一支带旁白、背景乐、音效、电影感动效的产品/演示视频(MP4)。**
 A config-driven engine that turns one JSON file into a narrated, cinematic product / pitch demo video — powered by [Remotion](https://remotion.dev).
 
-既是 [Claude Code](https://claude.com/claude-code) 的一个 **skill**(说"帮我做个产品演示视频"即触发),也能作为独立的 Remotion 工程直接用。支持 Claude Code / OpenClaw / Hermes 等主流 Agent-Skills 框架。
+一个标准 **Agent Skill**——通过 [skills.sh](https://skills.sh)(`vercel-labs/skills`)**一行装到你的智能体**(Claude Code / Codex / … 任意支持 Agent Skills 的 agent),说"帮我做个产品演示视频"即触发。
 
-## 一键安装
+## 一键安装(装到智能体,不是装到操作系统)
 
-```sh
-# macOS / Linux — 默认装到 Claude Code(~/.claude/skills/)
-curl -fsSL https://raw.githubusercontent.com/stoneyang0213/demo-video-maker/main/install.sh | sh
+```bash
+npx skills add stoneyang0213/demo-video-maker
 ```
-```powershell
-# Windows PowerShell
-irm https://raw.githubusercontent.com/stoneyang0213/demo-video-maker/main/install.ps1 | iex
-```
-其它框架(OpenClaw / Hermes / …)只是 skills 目录不同,加 `--dir <skills目录>` 即可。**完整分框架说明见 [INSTALL.md](INSTALL.md)**。先决条件:Node 18+ / ffmpeg / Python3(requests+numpy)/ SiliconFlow key,安装脚本会自检。
+
+- 默认装到当前项目的 agent skills 目录;`-g` 装到全局用户目录;`-a claude-code` 指定 agent。
+- **Windows / 代理环境**:加 `--copy`(`npx skills add stoneyang0213/demo-video-maker --copy`),避免 symlink 被存成文本文件。
+- **不想用 CLI**:手动把 skill 文件夹放进你 agent 的 skills 目录即可,例如 Claude Code:
+  ```bash
+  git clone https://github.com/stoneyang0213/demo-video-maker ~/.claude/skills/demo-video-maker
+  ```
+
+各框架(Claude Code / OpenClaw / Hermes / 其它)详见 **[INSTALL.md](INSTALL.md)**。
+先决条件:Node 18+ / ffmpeg / Python 3(`pip install requests numpy`)/ 一个 SiliconFlow API key。
 
 ---
 
