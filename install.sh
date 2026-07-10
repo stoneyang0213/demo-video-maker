@@ -33,10 +33,15 @@ mkdir -p "$SKILLS_DIR"
 
 # ---- 落地(优先本地副本,否则 clone)----
 if [ -f "./SKILL.md" ] && [ -d "./assets" ]; then
-  echo "→ 从当前目录复制"
-  rm -rf "$TARGET"; mkdir -p "$TARGET"
-  cp -r ./* "$TARGET"/ 2>/dev/null || true
-  [ -f ./.gitignore ] && cp ./.gitignore "$TARGET"/ 2>/dev/null || true
+  SRC=$(pwd)
+  if [ "$(cd "$TARGET" 2>/dev/null && pwd)" = "$SRC" ]; then
+    echo "→ 已在目标位置,无需复制"
+  else
+    echo "→ 从当前目录复制"
+    rm -rf "$TARGET"; mkdir -p "$TARGET"
+    cp -r ./* "$TARGET"/ 2>/dev/null || true
+    [ -f ./.gitignore ] && cp ./.gitignore "$TARGET"/ 2>/dev/null || true
+  fi
 else
   echo "→ git clone"
   rm -rf "$TARGET"

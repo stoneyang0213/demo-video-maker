@@ -14,9 +14,15 @@ Write-Host "== 安装 $Name 到: $Target =="
 New-Item -ItemType Directory -Force -Path $Dir | Out-Null
 
 if ((Test-Path ".\SKILL.md") -and (Test-Path ".\assets")) {
-  Write-Host "→ 从当前目录复制"
-  if (Test-Path $Target) { Remove-Item -Recurse -Force $Target }
-  Copy-Item -Recurse -Force -Path (Get-Location) -Destination $Target
+  $src = (Get-Location).Path
+  $tgt = if (Test-Path $Target) { (Resolve-Path $Target).Path } else { $Target }
+  if ($tgt -eq $src) {
+    Write-Host "→ 已在目标位置,无需复制"
+  } else {
+    Write-Host "→ 从当前目录复制"
+    if (Test-Path $Target) { Remove-Item -Recurse -Force $Target }
+    Copy-Item -Recurse -Force -Path $src -Destination $Target
+  }
 } else {
   Write-Host "→ git clone"
   if (Test-Path $Target) { Remove-Item -Recurse -Force $Target }
