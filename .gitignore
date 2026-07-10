@@ -1,0 +1,22 @@
+# 依赖 / 构建
+node_modules/
+assets/remotion-template/node_modules/
+**/out/
+*.mp4
+
+# 密钥 / 环境
+.env
+*.key
+
+# 生成的配音(用户自己跑 tts 时产生,含各自内容,不入库)
+assets/remotion-template/public/vo/*.mp3
+# 注:config.json(=示例)与 vo_manifest.json({})随模板入库,让 clone 后开箱可跑
+
+# 脚本工作目录
+scripts/audio/
+**/__pycache__/
+*.pyc
+
+# 系统
+.DS_Store
+Thumbs.db
